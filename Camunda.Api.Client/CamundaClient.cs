@@ -2,30 +2,30 @@
 using System.Net.Http;
 using System.Reflection;
 using System.Globalization;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Refit;
-
-using Camunda.Api.Client.CaseDefinition;
-using Camunda.Api.Client.CaseExecution;
-using Camunda.Api.Client.DecisionDefinition;
-using Camunda.Api.Client.Deployment;
-using Camunda.Api.Client.Execution;
-using Camunda.Api.Client.ExternalTask;
-using Camunda.Api.Client.Group;
-using Camunda.Api.Client.History;
-using Camunda.Api.Client.Incident;
-using Camunda.Api.Client.Job;
-using Camunda.Api.Client.JobDefinition;
-using Camunda.Api.Client.Message;
-using Camunda.Api.Client.ProcessDefinition;
-using Camunda.Api.Client.ProcessInstance;
-using Camunda.Api.Client.Signal;
-using Camunda.Api.Client.Tenant;
-using Camunda.Api.Client.User;
-using Camunda.Api.Client.UserTask;
-using Camunda.Api.Client.VariableInstance;
+using Camunda.Api.Client.Extensions;
+using Camunda.Api.Client.Infrastructure;
+using Camunda.Api.Client.ServiceEndpoints.CaseExecution;
+using Camunda.Api.Client.ServiceEndpoints.DecisionDefinition;
+using Camunda.Api.Client.ServiceEndpoints.Deployment;
+using Camunda.Api.Client.ServiceEndpoints.Execution;
+using Camunda.Api.Client.ServiceEndpoints.ExternalTask;
+using Camunda.Api.Client.ServiceEndpoints.Group;
+using Camunda.Api.Client.ServiceEndpoints.History;
+using Camunda.Api.Client.ServiceEndpoints.Incident;
+using Camunda.Api.Client.ServiceEndpoints.Job;
+using Camunda.Api.Client.ServiceEndpoints.JobDefinition;
+using Camunda.Api.Client.ServiceEndpoints.Message;
+using Camunda.Api.Client.ServiceEndpoints.ProcessDefinition;
+using Camunda.Api.Client.ServiceEndpoints.ProcessInstance;
+using Camunda.Api.Client.ServiceEndpoints.CaseDefinition;
+using Camunda.Api.Client.ServiceEndpoints.Signal;
+using Camunda.Api.Client.ServiceEndpoints.Tenant;
+using Camunda.Api.Client.ServiceEndpoints.User;
+using Camunda.Api.Client.ServiceEndpoints.UserTask;
+using Camunda.Api.Client.ServiceEndpoints.VariableInstance;
 
 namespace Camunda.Api.Client
 {
@@ -60,20 +60,6 @@ namespace Camunda.Api.Client
         private HttpMessageHandler _httpMessageHandler;
         internal static JsonSerializerSettings JsonSerializerSettings => _jsonSerializerSettings;
 
-        internal class HistoricApi
-        {
-            public Lazy<IHistoricActivityInstanceRestService> ActivityInstanceApi;
-            public Lazy<IHistoricCaseActivityInstanceRestService> CaseActivityInstanceApi;
-            public Lazy<IHistoricCaseDefinitionRestService> CaseDefinitionApi;
-            public Lazy<IHistoricCaseInstanceRestService> CaseInstanceApi;
-            public Lazy<IHistoricDecisionInstanceRestService> DecisionInstanceApi;
-            public Lazy<IHistoricDetailRestService> DetailApi;
-            public Lazy<IHistoricIncidentRestService> IncidentApi;
-            public Lazy<IHistoricJobLogRestService> JobLogApi;
-            public Lazy<IHistoricProcessInstanceRestService> ProcessInstanceApi;
-            public Lazy<IHistoricVariableInstanceRestService> VariableInstanceApi;
-        }
-
         static CamundaClient()
         {
             _jsonSerializerSettings = _jsonSerializerSettings ?? new JsonSerializerSettings
@@ -86,53 +72,6 @@ namespace Camunda.Api.Client
             _jsonSerializerSettings.Converters.Add(new CustomIsoDateTimeConverter());
         }
 
-        private class CustomIsoDateTimeConverter : Newtonsoft.Json.Converters.IsoDateTimeConverter
-        {
-            public CustomIsoDateTimeConverter()
-            {
-                Culture = CultureInfo.InvariantCulture;
-            }
-
-            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-            {
-                if (value is DateTime dateTime)
-                {
-                    if ((DateTimeStyles & DateTimeStyles.AdjustToUniversal) == DateTimeStyles.AdjustToUniversal
-                        || (DateTimeStyles & DateTimeStyles.AssumeUniversal) == DateTimeStyles.AssumeUniversal)
-                    {
-                        dateTime = dateTime.ToUniversalTime();
-                    }
-
-                    writer.WriteValue(dateTime.ToJavaISO8601());
-                }
-                else
-                {
-                    base.WriteJson(writer, value, serializer);
-                }
-            }
-
-            public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-            {
-                bool nullable = objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof(Nullable<>);
-
-                if (reader.TokenType == JsonToken.String)
-                {
-                    string dateText = reader.Value.ToString();
-
-                    if (string.IsNullOrEmpty(dateText) && nullable)
-                        return null;
-
-                    if (dateText.EndsWith("UTC"))
-                    {
-                        if (DateTime.TryParseExact(dateText.Replace("UTC", "Z"), "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK", CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out var dt))
-                            return dt;
-                    }
-                }
-
-                return base.ReadJson(reader, objectType, existingValue, serializer);
-            }
-        }
-
         private void Initialize()
         {
             _httpMessageHandler = _httpMessageHandler ?? new ErrorMessageHandler();
@@ -143,23 +82,6 @@ namespace Camunda.Api.Client
                 UrlParameterFormatter = new CustomUrlParameterFormatter(),
                 HttpMessageHandlerFactory = () => _httpMessageHandler
             };
-        }
-
-        private class CustomUrlParameterFormatter : DefaultUrlParameterFormatter
-        {
-            public override string Format(object parameterValue, ParameterInfo parameterInfo)
-            {
-                if (parameterValue is bool)
-                    return string.Format(CultureInfo.InvariantCulture, "{0}", parameterValue).ToLower();
-                else
-                    return base.Format(parameterValue, parameterInfo);
-            }
-        }
-
-        private class CustomCamelCasePropertyNamesContractResolver : CamelCasePropertyNamesContractResolver
-        {
-            // preserve exact dictionary key
-            protected override string ResolveDictionaryKey(string dictionaryKey) => dictionaryKey;
         }
 
         private CamundaClient(string hostUrl)

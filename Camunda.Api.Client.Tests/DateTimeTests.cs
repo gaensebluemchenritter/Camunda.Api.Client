@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Camunda.Api.Client.ProcessInstance;
+using Camunda.Api.Client.ServiceEndpoints.ProcessInstance;
 using Refit;
 using RichardSzalay.MockHttp;
 using Xunit;
