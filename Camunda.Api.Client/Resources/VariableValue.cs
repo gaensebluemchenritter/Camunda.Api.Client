@@ -108,7 +108,7 @@ namespace Camunda.Api.Client.Resources
             ValueInfo.ContainsKey(ValueInfoObjectTypeName) &&
             ValueInfo.ContainsKey(ValueInfoSerializationDataFormat) &&
             ValueInfo[ValueInfoObjectTypeName].Equals(SerializedTypedObjectTypeName) &&
-            ValueInfo[ValueInfoSerializationDataFormat].Equals(Infrastructure.MediaTypes.Application.Json);
+            ValueInfo[ValueInfoSerializationDataFormat].Equals(Infrastructure.Iana.MediaTypes.Application.Json);
 
         public override string ToString()
         {
@@ -172,7 +172,7 @@ namespace Camunda.Api.Client.Resources
         /// <param name="charset">The encoding of the file that is being uploaded.</param>
         public static VariableValue FromTextFile(string path, string charset = "utf-8")
         {
-            return FromFile(File.ReadAllBytes(path), Path.GetFileName(path), Infrastructure.MediaTypes.Text.Plain, charset);
+            return FromFile(File.ReadAllBytes(path), Path.GetFileName(path), Infrastructure.Iana.MediaTypes.Text.Plain, charset);
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace Camunda.Api.Client.Resources
         /// </summary>
         /// <param name="path">Local path to the file.</param>
         /// <param name="mimeType">The MIME type of the file that is being uploaded. Use constant from <see cref="MediaTypes"/></param>
-        public static VariableValue FromBinaryFile(string path, string mimeType = Infrastructure.MediaTypes.Application.OctetStream)
+        public static VariableValue FromBinaryFile(string path, string mimeType = Infrastructure.Iana.MediaTypes.Application.OctetStream)
         {
             return FromFile(File.ReadAllBytes(path), Path.GetFileName(path), mimeType, null);
         }
@@ -241,7 +241,7 @@ namespace Camunda.Api.Client.Resources
             if (Type == VariableType.Object) {
                 ValueInfo = new Dictionary<string, object>()
                 {
-                    [ValueInfoSerializationDataFormat] = Infrastructure.MediaTypes.Application.Json,
+                    [ValueInfoSerializationDataFormat] = Infrastructure.Iana.MediaTypes.Application.Json,
                     [ValueInfoObjectTypeName] = JavaObjectTypeName
                 };
             }
@@ -255,7 +255,7 @@ namespace Camunda.Api.Client.Resources
         {
             ValueInfo = new Dictionary<string, object>()
             {
-                [ValueInfoSerializationDataFormat] = Infrastructure.MediaTypes.Application.Json,
+                [ValueInfoSerializationDataFormat] = Infrastructure.Iana.MediaTypes.Application.Json,
                 [ValueInfoObjectTypeName] = SerializedTypedObjectTypeName
             };
         }

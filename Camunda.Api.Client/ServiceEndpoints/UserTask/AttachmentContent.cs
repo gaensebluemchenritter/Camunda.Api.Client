@@ -10,7 +10,7 @@ namespace Camunda.Api.Client.ServiceEndpoints.UserTask
         public AttachmentContent(Stream stream) : base(stream)
         {
             Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data") { Name = "content" };
-            Headers.ContentType = new MediaTypeHeaderValue(Infrastructure.MediaTypes.Application.OctetStream);
+            Headers.ContentType = new MediaTypeHeaderValue(Infrastructure.Iana.MediaTypes.Application.OctetStream);
             Headers.Add("Content-Transfer-Encoding", "binary");
         }
     }

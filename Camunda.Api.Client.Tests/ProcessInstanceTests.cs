@@ -17,7 +17,7 @@ namespace Camunda.Api.Client.Tests
             var mockHttp = new MockHttpMessageHandler();
 
             var request = mockHttp.Expect(HttpMethod.Post, "http://localhost:8080/engine-rest/process-instance");
-            request.Respond(HttpStatusCode.OK, Infrastructure.MediaTypes.Application.Json, "[]");
+            request.Respond(HttpStatusCode.OK, Infrastructure.Iana.MediaTypes.Application.Json, "[]");
             ////mockHttp.Expect(HttpMethod.Post, "http://localhost:8080/engine-rest/process-instance")
             ////    .Respond(HttpStatusCode.OK, Infrastructure.MediaTypes.Application.Json, "[]");
 

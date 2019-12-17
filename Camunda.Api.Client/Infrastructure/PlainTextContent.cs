@@ -8,7 +8,7 @@ namespace Camunda.Api.Client.Infrastructure
         public PlainTextContent(string partName, string text) : base(text ?? "")
         {
             Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data") { Name = partName };
-            Headers.ContentType = new MediaTypeHeaderValue(Infrastructure.MediaTypes.Text.Plain) { CharSet = "UTF-8" };
+            Headers.ContentType = new MediaTypeHeaderValue(Iana.MediaTypes.Text.Plain) { CharSet = "UTF-8" };
             Headers.Add("Content-Transfer-Encoding", "8bit");
         }
     }

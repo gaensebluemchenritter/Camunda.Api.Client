@@ -13,7 +13,7 @@ namespace Camunda.Api.Client.Infrastructure
             var response = await base.SendAsync(request, cancellationToken);
 
             if (response.IsSuccessStatusCode == false && 
-                response.Content?.Headers?.ContentType?.MediaType?.Equals(MediaTypes.Application.Json) == true)
+                response.Content?.Headers?.ContentType?.MediaType?.Equals(Iana.MediaTypes.Application.Json) == true)
             {
                 RestError err = null;
                 string json = null;

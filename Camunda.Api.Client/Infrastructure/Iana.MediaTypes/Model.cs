@@ -1,4 +1,4 @@
-﻿namespace Camunda.Api.Client.Infrastructure.MediaTypes
+﻿namespace Camunda.Api.Client.Infrastructure.Iana.MediaTypes
 {
         /// <summary>
         ///   Encapsulates the media subtypes registered under the model type.

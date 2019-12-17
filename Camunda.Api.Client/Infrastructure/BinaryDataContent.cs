@@ -11,7 +11,7 @@ namespace Camunda.Api.Client.Infrastructure
         public BinaryDataContent(Stream stream, string fileName = "unspecified") : base(stream)
         {
             Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data") { FileName = fileName, Name = "data" };
-            Headers.ContentType = new MediaTypeHeaderValue(MediaTypes.Application.OctetStream);
+            Headers.ContentType = new MediaTypeHeaderValue(Iana.MediaTypes.Application.OctetStream);
             Headers.Add("Content-Transfer-Encoding", "binary");
         }
     }

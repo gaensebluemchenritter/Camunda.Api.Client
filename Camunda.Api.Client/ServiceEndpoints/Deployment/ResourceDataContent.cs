@@ -12,7 +12,7 @@ namespace Camunda.Api.Client.ServiceEndpoints.Deployment
         public ResourceDataContent(Stream stream, string fileName ) : base(stream)
         {
             Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data") { FileName = fileName, Name = "data-" + Guid.NewGuid().ToString("D") };
-            Headers.ContentType = new MediaTypeHeaderValue(Infrastructure.MediaTypes.Application.OctetStream);
+            Headers.ContentType = new MediaTypeHeaderValue(Infrastructure.Iana.MediaTypes.Application.OctetStream);
             Headers.Add("Content-Transfer-Encoding", "binary");
         }
 
