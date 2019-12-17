@@ -16,7 +16,7 @@ namespace Camunda.Api.Client.ServiceEndpoints.UserTask
         /// </summary>
         public bool? WithVariablesInReturn { get; set; } = null;
 
-        public new CompleteTask SetVariable(string name, object value)
+        public CompleteTask SetVariable(string name, object value)
         {
             Variables = (Variables ?? new Dictionary<string, VariableValue>()).Set(name, value);
             return this;
