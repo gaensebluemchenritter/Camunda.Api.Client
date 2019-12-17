@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
-using System.Text;
 using Camunda.Api.Client.Resources;
 using Newtonsoft.Json;
 
@@ -26,7 +24,7 @@ namespace Camunda.Api.Client.Infrastructure
                         string property = (string)reader.Value;
 
                         // TODO KJ: check, if Variable.Value is indeed what gets used here, because that's what was used in the initial definition
-                        if (property.Equals(nameof(existingValue), StringComparison.OrdinalIgnoreCase))
+                        if (property.Equals("Value", StringComparison.OrdinalIgnoreCase))
                         {
                             if (target.Type == VariableType.String)
                             {
