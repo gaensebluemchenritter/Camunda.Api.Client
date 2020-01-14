@@ -6,7 +6,7 @@ using Camunda.Api.Client.Resources;
 
 namespace Camunda.Api.Client.ServiceEndpoints.Tenant
 {
-    public class TenantService
+    public class TenantService : ITenantService
     {
         private ITenantRestService _api;
 

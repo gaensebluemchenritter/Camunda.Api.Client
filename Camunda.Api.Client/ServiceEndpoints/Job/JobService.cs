@@ -4,7 +4,7 @@ using Camunda.Api.Client.ServiceEndpoints.Batch;
 
 namespace Camunda.Api.Client.ServiceEndpoints.Job
 {
-    public class JobService
+    public class JobService : IJobService
     {
         private IJobRestService _api;
 

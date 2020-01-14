@@ -92,12 +92,4 @@ namespace Camunda.Api.Client.ServiceEndpoints.ProcessInstance
         /// </summary>
         public List<VariableQueryParameter> Variables = new List<VariableQueryParameter>();
     }
-
-    public enum ProcessInstanceSorting
-    {
-        InstanceId,
-        DefinitionKey,
-        DefinitionId,
-        TenantId,
-    }
 }

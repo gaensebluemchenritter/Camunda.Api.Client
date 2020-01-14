@@ -2,7 +2,7 @@
 
 namespace Camunda.Api.Client.ServiceEndpoints.Identity
 {
-    public class IdentityService
+    public class IdentityService : IIdentityService
     {
         private IIdentityRestService _api;
 

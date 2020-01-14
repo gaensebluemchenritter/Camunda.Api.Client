@@ -3,7 +3,7 @@ using Camunda.Api.Client.Resources;
 
 namespace Camunda.Api.Client.ServiceEndpoints.JobDefinition
 {
-    public class JobDefinitionService
+    public class JobDefinitionService : IJobDefinitionService
     {
         private IJobDefinitionRestService _api;
 

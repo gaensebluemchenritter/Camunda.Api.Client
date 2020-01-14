@@ -21,6 +21,17 @@ using Camunda.Api.Client.ServiceEndpoints.Message;
 using Camunda.Api.Client.ServiceEndpoints.ProcessDefinition;
 using Camunda.Api.Client.ServiceEndpoints.ProcessInstance;
 using Camunda.Api.Client.ServiceEndpoints.CaseDefinition;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricActivityInstance;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricCaseActivityInstance;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricCaseDefinition;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricCaseInstance;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricDecisionInstance;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricDetail;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricIncident;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricJobLog;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricProcessInstance;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricVariableInstance;
+using Camunda.Api.Client.ServiceEndpoints.Identity;
 using Camunda.Api.Client.ServiceEndpoints.Signal;
 using Camunda.Api.Client.ServiceEndpoints.Tenant;
 using Camunda.Api.Client.ServiceEndpoints.User;
@@ -29,7 +40,7 @@ using Camunda.Api.Client.ServiceEndpoints.VariableInstance;
 
 namespace Camunda.Api.Client
 {
-    public class CamundaClient
+    public class CamundaClient : ICamundaClient
     {
         private Lazy<ICaseDefinitionRestService> _caseDefinitionRestService;
         private Lazy<ICaseExecutionRestService> _caseExecutionRestService;
@@ -39,6 +50,7 @@ namespace Camunda.Api.Client
         private Lazy<IExternalTaskRestService> _externalTaskApi;
         private Lazy<IGroupRestService> _groupApi;
         private Lazy<IIncidentRestService> _incidentApi;
+        private Lazy<IIdentityRestService> _identityApi;
         private Lazy<IJobDefinitionRestService> _jobDefinitionApi;
         private Lazy<IJobRestService> _jobApi;
         private Lazy<IMessageRestService> _messageApi;
@@ -115,6 +127,7 @@ namespace Camunda.Api.Client
             _executionApi = CreateService<IExecutionRestService>();
             _externalTaskApi = CreateService<IExternalTaskRestService>();
             _groupApi = CreateService<IGroupRestService>();
+            _identityApi = CreateService<IIdentityRestService>();
             _incidentApi = CreateService<IIncidentRestService>();
             _jobApi = CreateService<IJobRestService>();
             _jobDefinitionApi = CreateService<IJobDefinitionRestService>();
@@ -166,60 +179,63 @@ namespace Camunda.Api.Client
         }
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/case-definition/"/>
-        public CaseDefinitionService CaseDefinitions => new CaseDefinitionService(_caseDefinitionRestService.Value);
+        public ICaseDefinitionService CaseDefinitions => new CaseDefinitionService(_caseDefinitionRestService.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/case-execution/"/>
-        public CaseExecutionService CaseExecutions => new CaseExecutionService(_caseExecutionRestService.Value);
+        public ICaseExecutionService CaseExecutions => new CaseExecutionService(_caseExecutionRestService.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/decision-definition/"/>
-        public DecisionDefinitionService DecisionDefinitions => new DecisionDefinitionService(_decisionDefinitionRestService.Value);
+        public IDecisionDefinitionService DecisionDefinitions => new DecisionDefinitionService(_decisionDefinitionRestService.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/deployment/"/>
-        public DeploymentService Deployments => new DeploymentService(_deploymentApi.Value);
+        public IDeploymentService Deployments => new DeploymentService(_deploymentApi.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/execution/"/>
-        public ExecutionService Executions => new ExecutionService(_executionApi.Value);
+        public IExecutionService Executions => new ExecutionService(_executionApi.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/external-task/"/>
-        public ExternalTaskService ExternalTasks => new ExternalTaskService(_externalTaskApi.Value);
+        public IExternalTaskService ExternalTasks => new ExternalTaskService(_externalTaskApi.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/group/"/>
-        public GroupService Group => new GroupService(_groupApi.Value);
+        public IGroupService Group => new GroupService(_groupApi.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/history/"/>
-        public HistoryService History => new HistoryService(_historicApi);
+        public IHistoryService History => new HistoryService(_historicApi);
+
+        /// <see href="https://docs.camunda.org/manual/7.12/reference/rest/identity/"/>
+        public IIdentityService Identity => new IdentityService(_identityApi.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/incident/"/>
-        public IncidentService Incidents => new IncidentService(_incidentApi.Value);
+        public IIncidentService Incidents => new IncidentService(_incidentApi.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/job-definition/"/>
-        public JobDefinitionService JobDefinitions => new JobDefinitionService(_jobDefinitionApi.Value);
+        public IJobDefinitionService JobDefinitions => new JobDefinitionService(_jobDefinitionApi.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/job/"/>
-        public JobService Jobs => new JobService(_jobApi.Value);
+        public IJobService Jobs => new JobService(_jobApi.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/message/"/>
-        public MessageService Messages => new MessageService(_messageApi.Value);
+        public IMessageService Messages => new MessageService(_messageApi.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/process-definition/"/>
-        public ProcessDefinitionService ProcessDefinitions => new ProcessDefinitionService(_processDefinitionApi.Value);
+        public IProcessDefinitionService ProcessDefinitions => new ProcessDefinitionService(_processDefinitionApi.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/process-instance/"/>
-        public ProcessInstanceService ProcessInstances => new ProcessInstanceService(_processInstanceApi.Value);
+        public IProcessInstanceService ProcessInstances => new ProcessInstanceService(_processInstanceApi.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/signal/"/>
-        public SignalService Signals => new SignalService(_signalApi.Value);
+        public ISignalService Signals => new SignalService(_signalApi.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/task/"/>
-        public TenantService Tenants => new TenantService(_tenantApi.Value);
+        public ITenantService Tenants => new TenantService(_tenantApi.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/tenant/"/>
-        public UserService Users => new UserService(_userApi.Value);
+        public IUserService Users => new UserService(_userApi.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/user/"/>
-        public UserTaskService UserTasks => new UserTaskService(_userTaskApi.Value);
+        public IUserTaskService UserTasks => new UserTaskService(_userTaskApi.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/variable-instance/"/>
-        public VariableInstanceService VariableInstances => new VariableInstanceService(_variableInstanceApi.Value);
+        public IVariableInstanceService VariableInstances => new VariableInstanceService(_variableInstanceApi.Value);
     }
 }

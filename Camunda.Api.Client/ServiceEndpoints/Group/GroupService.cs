@@ -3,8 +3,8 @@ using Camunda.Api.Client.Resources;
 
 namespace Camunda.Api.Client.ServiceEndpoints.Group
 {
-    public class GroupService
-	{
+    public class GroupService : IGroupService
+    {
 		private IGroupRestService _api;
 
 		internal GroupService(IGroupRestService api)

@@ -2,7 +2,7 @@
 
 namespace Camunda.Api.Client.ServiceEndpoints.Signal
 {
-    public class SignalService
+    public class SignalService : ISignalService
     {
         private ISignalRestService _api;
 

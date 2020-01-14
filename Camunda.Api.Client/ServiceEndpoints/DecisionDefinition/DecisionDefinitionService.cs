@@ -2,7 +2,7 @@
 
 namespace Camunda.Api.Client.ServiceEndpoints.DecisionDefinition
 {
-    public class DecisionDefinitionService
+    public class DecisionDefinitionService : IDecisionDefinitionService
     {
         private IDecisionDefinitionRestService _api;
 

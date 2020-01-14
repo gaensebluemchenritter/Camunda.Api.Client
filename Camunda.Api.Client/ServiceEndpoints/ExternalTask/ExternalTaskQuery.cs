@@ -81,15 +81,4 @@ namespace Camunda.Api.Client.ServiceEndpoints.ExternalTask
         /// </summary>
         public long? PriorityLowerThanOrEquals;
     }
-
-    public enum ExternalTaskSorting
-    {
-        Id,
-        LockExpirationTime,
-        ProcessInstanceId,
-        ProcessDefinitionId,
-        ProcessDefinitionKey,
-        TaskPriority,
-        TenantId
-    }
 }

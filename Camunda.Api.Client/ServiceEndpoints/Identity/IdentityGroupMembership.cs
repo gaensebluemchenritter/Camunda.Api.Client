@@ -21,20 +21,4 @@ namespace Camunda.Api.Client.ServiceEndpoints.Identity
         [JsonProperty("groupUsers")]
         public List<IdentityUser> GroupUsers { get; set; }
     }
-
-    public class IdentityGroup
-    {
-        public string Id;
-        public string Name;
-        public override string ToString() => Id;
-    }
-    public class IdentityUser
-    {
-        public string Id;
-        public string FirstName;
-        public string LastName;
-        public string DisplayName;
-        public override string ToString() => Id;
-    }
-
 }

@@ -96,17 +96,4 @@ namespace Camunda.Api.Client.ServiceEndpoints.Job
         /// </summary>
         public List<ConditionQueryParameter> DueDates = new List<ConditionQueryParameter>();
     }
-
-    public enum JobQuerySorting
-    {
-        JobId,
-        ExecutionId,
-        ProcessInstanceId,
-        ProcessDefinitionId,
-        ProcessDefinitionKey,
-        JobRetries,
-        JobDueDate,
-        JobPriority,
-        TenantId
-    }
 }

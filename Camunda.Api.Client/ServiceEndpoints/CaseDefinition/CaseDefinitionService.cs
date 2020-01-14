@@ -2,7 +2,7 @@
 
 namespace Camunda.Api.Client.ServiceEndpoints.CaseDefinition
 {
-    public class CaseDefinitionService
+    public class CaseDefinitionService : ICaseDefinitionService
     {
         private ICaseDefinitionRestService _api;
 

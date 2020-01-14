@@ -5,7 +5,7 @@ using Camunda.Api.Client.Resources;
 
 namespace Camunda.Api.Client.ServiceEndpoints.Deployment
 {
-    public class DeploymentService
+    public class DeploymentService : IDeploymentService
     {
         private IDeploymentRestService _api;
 

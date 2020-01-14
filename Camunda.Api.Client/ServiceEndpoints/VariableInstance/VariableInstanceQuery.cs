@@ -59,12 +59,4 @@ namespace Camunda.Api.Client.ServiceEndpoints.VariableInstance
         [JsonProperty("tenantIdIn")]
         public List<string> TenantIds = new List<string>();
     }
-
-    public enum VariableInstanceSorting
-    {
-        VariableName,
-        VariableType,
-        ActivityInstanceId,
-        TenantId
-    }
 }

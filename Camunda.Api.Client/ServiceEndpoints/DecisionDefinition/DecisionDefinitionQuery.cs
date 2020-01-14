@@ -99,15 +99,4 @@ namespace Camunda.Api.Client.ServiceEndpoints.DecisionDefinition
         /// </summary>
         public SortOrder SortOrder;
     }
-
-    public enum DecisionDefinitionSorting
-    {
-        Category,
-        Key,
-        Id,
-        Name,
-        Version,
-        DeploymentId,
-        TenantId
-    }
 }

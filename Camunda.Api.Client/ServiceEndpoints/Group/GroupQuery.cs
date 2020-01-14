@@ -44,11 +44,4 @@ namespace Camunda.Api.Client.ServiceEndpoints.Group
 		/// </summary>
 		public SortOrder SortOrder;
 	}
-
-	public enum GroupSorting
-	{
-		Id,
-		Name,
-		Type
-	}
 }

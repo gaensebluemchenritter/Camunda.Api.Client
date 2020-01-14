@@ -57,12 +57,4 @@ namespace Camunda.Api.Client.ServiceEndpoints.Deployment
         /// </summary>
         public SortOrder SortOrder;
     }
-
-    public enum DeploymentSorting
-    {
-        Id,
-        Name,
-        DeploymentTime,
-        TenantId
-    }
 }

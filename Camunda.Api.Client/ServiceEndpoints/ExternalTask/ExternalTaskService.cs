@@ -5,7 +5,8 @@ using Camunda.Api.Client.Resources;
 
 namespace Camunda.Api.Client.ServiceEndpoints.ExternalTask
 {
-    public class ExternalTaskService
+
+    public class ExternalTaskService : IExternalTaskService
     {
         private IExternalTaskRestService _api;
 

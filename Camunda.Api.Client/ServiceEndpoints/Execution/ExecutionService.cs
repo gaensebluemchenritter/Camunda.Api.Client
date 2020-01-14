@@ -2,7 +2,7 @@
 
 namespace Camunda.Api.Client.ServiceEndpoints.Execution
 {
-    public class ExecutionService
+    public class ExecutionService : IExecutionService
     {
         private IExecutionRestService _api;
 

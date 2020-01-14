@@ -82,12 +82,4 @@ namespace Camunda.Api.Client.ServiceEndpoints.CaseExecution
         /// </summary>
         public SortOrder SortOrder;
     }
-
-    public enum CaseExecutionQuerySorting
-    {
-        CaseExecutionId,
-        CaseDefinitionKey,
-        CaseDefinitionId,
-        TenantId
-    }
 }

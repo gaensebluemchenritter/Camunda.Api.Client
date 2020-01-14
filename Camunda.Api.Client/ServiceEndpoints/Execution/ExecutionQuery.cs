@@ -78,12 +78,4 @@ namespace Camunda.Api.Client.ServiceEndpoints.Execution
         /// <remarks>Values are always treated as String objects on server side.</remarks>
         public List<VariableQueryParameter> ProcessVariables = new List<VariableQueryParameter>();
     }
-
-    public enum ExecutionSorting
-    {
-        InstanceId,
-        DefinitionKey,
-        DefinitionId,
-        TenantId
-    }
 }

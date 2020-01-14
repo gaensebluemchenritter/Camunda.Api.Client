@@ -4,7 +4,7 @@ using Camunda.Api.Client.Resources;
 
 namespace Camunda.Api.Client.ServiceEndpoints.UserTask
 {
-    public class UserTaskService
+    public class UserTaskService : IUserTaskService
     {
         private IUserTaskRestService _api;
 

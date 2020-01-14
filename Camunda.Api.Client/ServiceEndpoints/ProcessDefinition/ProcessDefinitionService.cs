@@ -4,7 +4,7 @@ using Camunda.Api.Client.Resources;
 
 namespace Camunda.Api.Client.ServiceEndpoints.ProcessDefinition
 {
-    public class ProcessDefinitionService
+    public class ProcessDefinitionService : IProcessDefinitionService
     {
         private IProcessDefinitionRestService _api;
 

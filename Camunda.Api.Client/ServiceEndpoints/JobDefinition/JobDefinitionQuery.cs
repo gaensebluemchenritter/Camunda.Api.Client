@@ -57,15 +57,4 @@ namespace Camunda.Api.Client.ServiceEndpoints.JobDefinition
         /// </summary>
         public bool IncludeJobDefinitionsWithoutTenantId;
     }
-
-    public enum JobDefinitionSorting
-    {
-        JobDefinitionId,
-        ActivityId,
-        ProcessDefinitionId,
-        ProcessDefinitionKey,
-        JobType,
-        JobConfiguration,
-        TenantId
-    }
 }

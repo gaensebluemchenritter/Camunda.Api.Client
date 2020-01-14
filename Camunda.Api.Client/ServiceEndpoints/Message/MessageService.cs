@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Camunda.Api.Client.ServiceEndpoints.Message
 {
-    public class MessageService
+    public class MessageService : IMessageService
     {
         private IMessageRestService _api;
 

@@ -1,6 +1,5 @@
 ﻿using Camunda.Api.Client.ServiceEndpoints.Execution;
 using Camunda.Api.Client.ServiceEndpoints.ProcessInstance;
-using System.Runtime.Serialization;
 
 namespace Camunda.Api.Client.ServiceEndpoints.Message
 {
@@ -21,14 +20,5 @@ namespace Camunda.Api.Client.ServiceEndpoints.Message
         /// This property only has a value if the <see cref="ResultType"/> is set to <see cref="MessageCorrelationResultType.ProcessDefinition"/>
         /// </summary>
         public ProcessInstanceInfo ProcessInstance;
-    }
-
-    public enum MessageCorrelationResultType
-    {
-        [EnumMember(Value = nameof(ProcessDefinition))]
-        ProcessDefinition,
-
-        [EnumMember(Value = nameof(Execution))]
-        Execution,
     }
 }

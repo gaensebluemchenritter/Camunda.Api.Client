@@ -99,15 +99,4 @@ namespace Camunda.Api.Client.ServiceEndpoints.CaseDefinition
         /// </summary>
         public SortOrder SortOrder;
     }
-
-    public enum CaseDefinitionQuerySorting
-    {
-        Category,
-        Key,
-        Id,
-        Name,
-        Version,
-        DeploymentId,
-        TenantId
-    }
 }

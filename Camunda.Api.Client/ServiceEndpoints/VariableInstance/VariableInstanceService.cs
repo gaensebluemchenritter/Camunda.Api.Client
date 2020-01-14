@@ -1,6 +1,6 @@
 ﻿namespace Camunda.Api.Client.ServiceEndpoints.VariableInstance
 {
-    public class VariableInstanceService
+    public class VariableInstanceService : IVariableInstanceService
     {
         private IVariableInstanceRestService _api;
 

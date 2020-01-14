@@ -2,7 +2,7 @@
 
 namespace Camunda.Api.Client.ServiceEndpoints.CaseExecution
 {
-    public class CaseExecutionService
+    public class CaseExecutionService : ICaseExecutionService
     {
         private ICaseExecutionRestService _api;
 

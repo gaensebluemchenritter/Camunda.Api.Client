@@ -50,12 +50,4 @@ namespace Camunda.Api.Client.ServiceEndpoints.User
         /// </summary>
         public SortOrder SortOrder;
     }
-
-    public enum UserSorting
-    {
-        UserId,
-        FirstName,
-        LastName,
-        Email,
-    }
 }

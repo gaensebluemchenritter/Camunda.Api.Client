@@ -4,7 +4,7 @@ using Camunda.Api.Client.ServiceEndpoints.Batch;
 
 namespace Camunda.Api.Client.ServiceEndpoints.ProcessInstance
 {
-    public class ProcessInstanceService
+    public class ProcessInstanceService : IProcessInstanceService
     {
         private IProcessInstanceRestService _api;
 

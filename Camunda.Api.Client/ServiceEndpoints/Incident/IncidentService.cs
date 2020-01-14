@@ -2,7 +2,7 @@
 
 namespace Camunda.Api.Client.ServiceEndpoints.Incident
 {
-    public class IncidentService
+    public class IncidentService : IIncidentService
     {
         private IIncidentRestService _api;
 

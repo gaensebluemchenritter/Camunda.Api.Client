@@ -3,7 +3,7 @@ using Camunda.Api.Client.Resources;
 
 namespace Camunda.Api.Client.ServiceEndpoints.User
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private IUserRestService _api;
 

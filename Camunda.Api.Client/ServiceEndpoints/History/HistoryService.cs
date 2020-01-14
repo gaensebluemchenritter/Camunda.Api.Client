@@ -1,8 +1,18 @@
 ﻿using Camunda.Api.Client.Infrastructure;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricActivityInstance;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricCaseActivityInstance;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricCaseDefinition;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricCaseInstance;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricDecisionInstance;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricDetail;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricIncident;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricJobLog;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricProcessInstance;
+using Camunda.Api.Client.ServiceEndpoints.History.HistoricVariableInstance;
 
 namespace Camunda.Api.Client.ServiceEndpoints.History
 {
-    public class HistoryService
+    public class HistoryService : IHistoryService
     {
         private HistoricApi _api;
 
