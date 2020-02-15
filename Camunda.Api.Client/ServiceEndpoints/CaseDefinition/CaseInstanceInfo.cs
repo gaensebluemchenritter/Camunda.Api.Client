@@ -1,4 +1,4 @@
-namespace Camunda.Api.Client.ServiceEndpoints.CaseInstance
+namespace Camunda.Api.Client.ServiceEndpoints.CaseDefinition
 {
     public class CaseInstanceInfo
     {

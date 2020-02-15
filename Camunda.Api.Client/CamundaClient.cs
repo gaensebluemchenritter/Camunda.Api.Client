@@ -7,6 +7,7 @@ using Newtonsoft.Json.Serialization;
 using Refit;
 using Camunda.Api.Client.Extensions;
 using Camunda.Api.Client.Infrastructure;
+using Camunda.Api.Client.ServiceEndpoints.Authorization;
 using Camunda.Api.Client.ServiceEndpoints.CaseExecution;
 using Camunda.Api.Client.ServiceEndpoints.DecisionDefinition;
 using Camunda.Api.Client.ServiceEndpoints.Deployment;
@@ -42,6 +43,7 @@ namespace Camunda.Api.Client
 {
     public class CamundaClient : ICamundaClient
     {
+        private Lazy<IAuthorizationRestService> _authorizationRestService;
         private Lazy<ICaseDefinitionRestService> _caseDefinitionRestService;
         private Lazy<ICaseExecutionRestService> _caseExecutionRestService;
         private Lazy<IDecisionDefinitionRestService> _decisionDefinitionRestService;
@@ -68,20 +70,22 @@ namespace Camunda.Api.Client
         private HttpClient _httpClient;
 
         private RefitSettings _refitSettings;
-        private static JsonSerializerSettings _jsonSerializerSettings;
         private HttpMessageHandler _httpMessageHandler;
-        internal static JsonSerializerSettings JsonSerializerSettings => _jsonSerializerSettings;
+        internal static JsonSerializerSettings JsonSerializerSettings { get; private set; }
+        internal static JsonContentSerializer JsonContentSerializer { get; private set; }
 
         static CamundaClient()
         {
-            _jsonSerializerSettings = _jsonSerializerSettings ?? new JsonSerializerSettings
+            JsonSerializerSettings = JsonSerializerSettings ?? new JsonSerializerSettings
             {
                 ContractResolver = new CustomCamelCasePropertyNamesContractResolver(),
                 NullValueHandling = NullValueHandling.Ignore, // do not send empty fields
             };
 
-            _jsonSerializerSettings.Converters.Add(new StringEnumConverter());
-            _jsonSerializerSettings.Converters.Add(new CustomIsoDateTimeConverter());
+            JsonSerializerSettings.Converters.Add(new StringEnumConverter());
+            JsonSerializerSettings.Converters.Add(new CustomIsoDateTimeConverter());
+
+            JsonContentSerializer = JsonContentSerializer ?? new JsonContentSerializer(JsonSerializerSettings);
         }
 
         private void Initialize()
@@ -90,7 +94,7 @@ namespace Camunda.Api.Client
 
             _refitSettings = _refitSettings ?? new RefitSettings
             {
-                JsonSerializerSettings = _jsonSerializerSettings,
+                ContentSerializer = JsonContentSerializer,
                 UrlParameterFormatter = new CustomUrlParameterFormatter(),
                 HttpMessageHandlerFactory = () => _httpMessageHandler
             };
@@ -120,6 +124,7 @@ namespace Camunda.Api.Client
 
         private void CreateServices()
         {
+            _authorizationRestService = CreateService<IAuthorizationRestService>();
             _caseDefinitionRestService = CreateService<ICaseDefinitionRestService>();
             _caseExecutionRestService = CreateService<ICaseExecutionRestService>();
             _decisionDefinitionRestService = CreateService<IDecisionDefinitionRestService>();
@@ -177,6 +182,9 @@ namespace Camunda.Api.Client
         {
             return new CamundaClient(httpClient);
         }
+        
+        /// <see href="https://docs.camunda.org/manual/7.12/reference/rest/authorization/"/>
+        public IAuthorizationService Authorization => new AuthorizationService(_authorizationRestService.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/case-definition/"/>
         public ICaseDefinitionService CaseDefinitions => new CaseDefinitionService(_caseDefinitionRestService.Value);

@@ -10,6 +10,6 @@ namespace Camunda.Api.Client.ServiceEndpoints.Identity
         [JsonProperty("name")]
         public string Name;
 
-        public string ToString() => Id;
+        public override string ToString() => Id;
     }
 }

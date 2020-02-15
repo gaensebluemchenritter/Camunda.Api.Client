@@ -1,9 +1,8 @@
-﻿using Camunda.Api.Client.ServiceEndpoints.CaseInstance;
-using Refit;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Camunda.Api.Client.Resources;
+using Refit;
 
 namespace Camunda.Api.Client.ServiceEndpoints.CaseDefinition
 {

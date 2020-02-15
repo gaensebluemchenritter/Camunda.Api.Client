@@ -1,4 +1,5 @@
-﻿using Camunda.Api.Client.ServiceEndpoints.CaseDefinition;
+﻿using Camunda.Api.Client.ServiceEndpoints.Authorization;
+using Camunda.Api.Client.ServiceEndpoints.CaseDefinition;
 using Camunda.Api.Client.ServiceEndpoints.CaseExecution;
 using Camunda.Api.Client.ServiceEndpoints.DecisionDefinition;
 using Camunda.Api.Client.ServiceEndpoints.Deployment;
@@ -23,6 +24,9 @@ namespace Camunda.Api.Client
 {
     public interface ICamundaClient
     {
+        /// <see href="https://docs.camunda.org/manual/7.12/reference/rest/authorization/"/>
+        IAuthorizationService Authorization { get; }
+
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/case-definition/"/>
         ICaseDefinitionService CaseDefinitions { get; }
 

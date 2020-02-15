@@ -1,5 +1,4 @@
-﻿using Camunda.Api.Client.ServiceEndpoints.CaseInstance;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Camunda.Api.Client.ServiceEndpoints.CaseDefinition
