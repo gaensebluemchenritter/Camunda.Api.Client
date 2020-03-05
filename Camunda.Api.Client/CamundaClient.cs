@@ -8,6 +8,7 @@ using Refit;
 using Camunda.Api.Client.Extensions;
 using Camunda.Api.Client.Infrastructure;
 using Camunda.Api.Client.ServiceEndpoints.Authorization;
+using Camunda.Api.Client.ServiceEndpoints.Batch;
 using Camunda.Api.Client.ServiceEndpoints.CaseExecution;
 using Camunda.Api.Client.ServiceEndpoints.DecisionDefinition;
 using Camunda.Api.Client.ServiceEndpoints.Deployment;
@@ -22,6 +23,7 @@ using Camunda.Api.Client.ServiceEndpoints.Message;
 using Camunda.Api.Client.ServiceEndpoints.ProcessDefinition;
 using Camunda.Api.Client.ServiceEndpoints.ProcessInstance;
 using Camunda.Api.Client.ServiceEndpoints.CaseDefinition;
+using Camunda.Api.Client.ServiceEndpoints.DecisionRequirementsDefinition;
 using Camunda.Api.Client.ServiceEndpoints.History.HistoricActivityInstance;
 using Camunda.Api.Client.ServiceEndpoints.History.HistoricCaseActivityInstance;
 using Camunda.Api.Client.ServiceEndpoints.History.HistoricCaseDefinition;
@@ -44,9 +46,11 @@ namespace Camunda.Api.Client
     public class CamundaClient : ICamundaClient
     {
         private Lazy<IAuthorizationRestService> _authorizationRestService;
+        private Lazy<IBatchRestService> _batchRestService;
         private Lazy<ICaseDefinitionRestService> _caseDefinitionRestService;
         private Lazy<ICaseExecutionRestService> _caseExecutionRestService;
         private Lazy<IDecisionDefinitionRestService> _decisionDefinitionRestService;
+        private Lazy<IDecisionRequirementsDefinitionRestService> _decisionRequirementsDefintionRestService;
         private Lazy<IDeploymentRestService> _deploymentApi;
         private Lazy<IExecutionRestService> _executionApi;
         private Lazy<IExternalTaskRestService> _externalTaskApi;
@@ -125,9 +129,11 @@ namespace Camunda.Api.Client
         private void CreateServices()
         {
             _authorizationRestService = CreateService<IAuthorizationRestService>();
+            _batchRestService = CreateService<IBatchRestService>();
             _caseDefinitionRestService = CreateService<ICaseDefinitionRestService>();
             _caseExecutionRestService = CreateService<ICaseExecutionRestService>();
             _decisionDefinitionRestService = CreateService<IDecisionDefinitionRestService>();
+            _decisionRequirementsDefintionRestService = CreateService<IDecisionRequirementsDefinitionRestService>();
             _deploymentApi = CreateService<IDeploymentRestService>();
             _executionApi = CreateService<IExecutionRestService>();
             _externalTaskApi = CreateService<IExternalTaskRestService>();
@@ -186,6 +192,9 @@ namespace Camunda.Api.Client
         /// <see href="https://docs.camunda.org/manual/7.12/reference/rest/authorization/"/>
         public IAuthorizationService Authorization => new AuthorizationService(_authorizationRestService.Value);
 
+        /// <see href="https://docs.camunda.org/manual/7.13/reference/rest/batch/"/>
+        public IBatchService Batch => new BatchService(_batchRestService.Value);
+
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/case-definition/"/>
         public ICaseDefinitionService CaseDefinitions => new CaseDefinitionService(_caseDefinitionRestService.Value);
 
@@ -194,6 +203,9 @@ namespace Camunda.Api.Client
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/decision-definition/"/>
         public IDecisionDefinitionService DecisionDefinitions => new DecisionDefinitionService(_decisionDefinitionRestService.Value);
+
+        /// <see href="https://docs.camunda.org/manual/7.13/reference/rest/decision-requirements-definition/"/>
+        public IDecisionRequirementsDefinitionService DecisionRequirementsDefinitions => new DecisionRequirementsDefinitionService(_decisionRequirementsDefintionRestService.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/deployment/"/>
         public IDeploymentService Deployments => new DeploymentService(_deploymentApi.Value);

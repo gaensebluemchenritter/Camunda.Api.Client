@@ -1,7 +1,9 @@
 ﻿using Camunda.Api.Client.ServiceEndpoints.Authorization;
+using Camunda.Api.Client.ServiceEndpoints.Batch;
 using Camunda.Api.Client.ServiceEndpoints.CaseDefinition;
 using Camunda.Api.Client.ServiceEndpoints.CaseExecution;
 using Camunda.Api.Client.ServiceEndpoints.DecisionDefinition;
+using Camunda.Api.Client.ServiceEndpoints.DecisionRequirementsDefinition;
 using Camunda.Api.Client.ServiceEndpoints.Deployment;
 using Camunda.Api.Client.ServiceEndpoints.Execution;
 using Camunda.Api.Client.ServiceEndpoints.ExternalTask;
@@ -27,6 +29,9 @@ namespace Camunda.Api.Client
         /// <see href="https://docs.camunda.org/manual/7.12/reference/rest/authorization/"/>
         IAuthorizationService Authorization { get; }
 
+        /// <see href="https://docs.camunda.org/manual/7.13/reference/rest/batch/"/>
+        IBatchService Batch { get; }
+
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/case-definition/"/>
         ICaseDefinitionService CaseDefinitions { get; }
 
@@ -35,6 +40,9 @@ namespace Camunda.Api.Client
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/decision-definition/"/>
         IDecisionDefinitionService DecisionDefinitions { get; }
+
+        /// <see href="https://docs.camunda.org/manual/7.13/reference/rest/decision-requirements-definition/"/>
+        IDecisionRequirementsDefinitionService DecisionRequirementsDefinitions { get; }
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/deployment/"/>
         IDeploymentService Deployments { get; }

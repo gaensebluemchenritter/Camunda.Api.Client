@@ -33,6 +33,10 @@
         /// </summary>
         public string SeedJobDefinitionId;
         /// <summary>
+        /// The job definition id for the monitor jobs of this batch.
+        /// </summary>
+        public string MonitorJobDefinitionId;
+        /// <summary>
         /// The job definition id for the batch execution jobs of this batch.
         /// </summary>
         public string BatchJobDefinitionId;
@@ -44,5 +48,9 @@
         /// The tenant id of the batch.
         /// </summary>
         public string TenantId;
+        /// <summary>
+        /// The id of the user that created the batch.
+        /// </summary>
+        public string CreateUserId;
     }
 }
