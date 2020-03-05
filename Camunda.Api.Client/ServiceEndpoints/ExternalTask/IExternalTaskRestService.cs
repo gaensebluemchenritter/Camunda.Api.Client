@@ -36,5 +36,8 @@ namespace Camunda.Api.Client.ServiceEndpoints.ExternalTask
 
         [Post("/external-task/{externalTaskId}/unlock")]
         Task Unlock(string externalTaskId);
+
+        [Post("/external-task/{externalTaskId}/extendLock")]
+        Task ExtendLock(string externalTaskId, [Body] ExternalTaskExtendLock externalTaskExtendLock);
     }
 }
