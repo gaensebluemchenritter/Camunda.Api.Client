@@ -16,7 +16,7 @@ namespace Camunda.Api.Client.ServiceEndpoints.Authorization
         }
 
         public QueryResource<AuthorizationQuery, AuthorizationInfo> Query(AuthorizationQuery query = null) =>
-            new QueryResource<AuthorizationQuery, AuthorizationInfo>(_api, query);
+            new QueryResource<AuthorizationQuery, AuthorizationInfo>(query, _api.GetList, _api.GetListCount);
 
         public AuthorizationResource this[string authorizationId] => new AuthorizationResource(_api, authorizationId);
 

@@ -1,6 +1,7 @@
 ﻿using Refit;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Camunda.Api.Client.Resources;
 
 namespace Camunda.Api.Client.ServiceEndpoints.History.HistoricCaseInstance
 {
@@ -11,5 +12,8 @@ namespace Camunda.Api.Client.ServiceEndpoints.History.HistoricCaseInstance
 
         [Post("/history/case-instance")]
         Task<List<HistoricCaseInstance>> GetList([Body]HistoricCaseInstanceQuery query, int? firstResult, int? maxResults);
+
+        [Post("/history/case-instance/count")]
+        Task<CountResult> GetListCount([Body] HistoricCaseInstanceQuery query);
     }
 }

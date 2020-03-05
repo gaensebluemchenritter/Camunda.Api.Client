@@ -12,7 +12,10 @@ namespace Camunda.Api.Client.ServiceEndpoints.History.HistoricJobLog
         }
 
         public QueryResource<HistoricJobLogQuery, HistoricJobLog> Query(HistoricJobLogQuery query = null) =>
-            new QueryResource<HistoricJobLogQuery, HistoricJobLog>(_api, query);
+            new QueryResource<HistoricJobLogQuery, HistoricJobLog>(
+                query, 
+                (q, f, m) => _api.GetList(q, f, m),
+                q => _api.GetListCount(q));
 
         /// <param name="historicJobLogId">The id of the log entry.</param>
         public HistoricJobLogResource this[string historicJobLogId] => new HistoricJobLogResource(_api, historicJobLogId);
