@@ -26,6 +26,11 @@ namespace Camunda.Api.Client.ServiceEndpoints.CaseDefinition
         /// </summary>
         public abstract Task<CaseInstanceInfo> CreateCaseInstance(CreateCaseInstance parameters);
 
-        // TODO: Update history time to live
+        /// <summary>
+        /// Updates history time to live for case definition with given id. The field is used within History cleanup.
+        /// </summary>
+        /// <param name="historyTimeToLive"></param>
+        /// <returns></returns>
+        public abstract Task UpdateHistoryTimeToLive(CaseDefinitionHistoryTimeToLive historyTimeToLive);
     }
 }

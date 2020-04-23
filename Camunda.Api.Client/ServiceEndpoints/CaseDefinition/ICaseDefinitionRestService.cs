@@ -44,5 +44,13 @@ namespace Camunda.Api.Client.ServiceEndpoints.CaseDefinition
         Task<CaseInstanceInfo> CreateCaseInstanceByKey(string key, [Body] CreateCaseInstance parameters);
         [Post("/case-definition/key/{key}/tenant-id/{tenantId}/create")]
         Task<CaseInstanceInfo> CreateCaseInstanceByKeyAndTenantId(string key, string tenantId, [Body] CreateCaseInstance parameters);
+
+
+        [Put("/case-definition/{id}/history-time-to-live")]
+        Task UpdateHistoryTimeToLiveById(string id, [Body] CaseDefinitionHistoryTimeToLive historyTimeToLive);
+        [Put("/case-definition/key/{key}/history-time-to-live")]
+        Task UpdateHistoryTimeToLiveByKey(string key, [Body] CaseDefinitionHistoryTimeToLive historyTimeToLive);
+        [Put("/case-definition/key/{key}/tenant-id/{tenantId}/history-time-to-live")]
+        Task UpdateHistoryTimeToLiveByKeyAndTenantId(string key, string tenantId, [Body] CaseDefinitionHistoryTimeToLive historyTimeToLive);
     }
 }

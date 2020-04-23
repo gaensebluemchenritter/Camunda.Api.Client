@@ -23,6 +23,9 @@ namespace Camunda.Api.Client.ServiceEndpoints.CaseDefinition
 
         public override Task<CaseInstanceInfo> CreateCaseInstance(CreateCaseInstance parameters) => _api.CreateCaseInstanceByKeyAndTenantId(_caseDefinitionKey, _tenantId, parameters);
 
+        public override Task UpdateHistoryTimeToLive(CaseDefinitionHistoryTimeToLive historyTimeToLive) =>
+            _api.UpdateHistoryTimeToLiveByKeyAndTenantId(_caseDefinitionKey, _tenantId, historyTimeToLive);
+
         public override string ToString() => _caseDefinitionKey;
     }
 }

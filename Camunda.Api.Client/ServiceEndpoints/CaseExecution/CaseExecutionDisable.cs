@@ -5,8 +5,8 @@ namespace Camunda.Api.Client.ServiceEndpoints.CaseExecution
 {
     public class CaseExecutionDisable
     {
-        public Dictionary<string, VariableValue> Variables = new Dictionary<string, VariableValue>();
+        public Dictionary<string, CaseExecutionVariableValue> Variables = new Dictionary<string, CaseExecutionVariableValue>();
 
-        // TODO: deletions
+        public List<CaseExecutionDeletion> Deletions = new List<CaseExecutionDeletion>();
     }
 }

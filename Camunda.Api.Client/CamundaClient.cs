@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Net.Http;
-using System.Reflection;
-using System.Globalization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Refit;
-using Camunda.Api.Client.Extensions;
 using Camunda.Api.Client.Infrastructure;
 using Camunda.Api.Client.ServiceEndpoints.Authorization;
 using Camunda.Api.Client.ServiceEndpoints.Batch;
