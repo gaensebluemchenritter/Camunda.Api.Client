@@ -2,6 +2,7 @@
 using Camunda.Api.Client.ServiceEndpoints.Batch;
 using Camunda.Api.Client.ServiceEndpoints.CaseDefinition;
 using Camunda.Api.Client.ServiceEndpoints.CaseExecution;
+using Camunda.Api.Client.ServiceEndpoints.CaseInstance;
 using Camunda.Api.Client.ServiceEndpoints.DecisionDefinition;
 using Camunda.Api.Client.ServiceEndpoints.DecisionRequirementsDefinition;
 using Camunda.Api.Client.ServiceEndpoints.Deployment;
@@ -37,6 +38,9 @@ namespace Camunda.Api.Client
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/case-execution/"/>
         ICaseExecutionService CaseExecutions { get; }
+
+        /// <see href="https://docs.camunda.org/manual/7.13/reference/rest/case-instance/"/>
+        ICaseInstanceService CaseInstances { get; }
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/decision-definition/"/>
         IDecisionDefinitionService DecisionDefinitions { get; }

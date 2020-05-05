@@ -19,6 +19,7 @@ using Camunda.Api.Client.ServiceEndpoints.Message;
 using Camunda.Api.Client.ServiceEndpoints.ProcessDefinition;
 using Camunda.Api.Client.ServiceEndpoints.ProcessInstance;
 using Camunda.Api.Client.ServiceEndpoints.CaseDefinition;
+using Camunda.Api.Client.ServiceEndpoints.CaseInstance;
 using Camunda.Api.Client.ServiceEndpoints.DecisionRequirementsDefinition;
 using Camunda.Api.Client.ServiceEndpoints.History.HistoricActivityInstance;
 using Camunda.Api.Client.ServiceEndpoints.History.HistoricCaseActivityInstance;
@@ -45,6 +46,7 @@ namespace Camunda.Api.Client
         private Lazy<IBatchRestService> _batchRestService;
         private Lazy<ICaseDefinitionRestService> _caseDefinitionRestService;
         private Lazy<ICaseExecutionRestService> _caseExecutionRestService;
+        private Lazy<ICaseInstanceRestService> _caseInstanceRestService;
         private Lazy<IDecisionDefinitionRestService> _decisionDefinitionRestService;
         private Lazy<IDecisionRequirementsDefinitionRestService> _decisionRequirementsDefintionRestService;
         private Lazy<IDeploymentRestService> _deploymentApi;
@@ -128,6 +130,7 @@ namespace Camunda.Api.Client
             _batchRestService = CreateService<IBatchRestService>();
             _caseDefinitionRestService = CreateService<ICaseDefinitionRestService>();
             _caseExecutionRestService = CreateService<ICaseExecutionRestService>();
+            _caseInstanceRestService = CreateService<ICaseInstanceRestService>();
             _decisionDefinitionRestService = CreateService<IDecisionDefinitionRestService>();
             _decisionRequirementsDefintionRestService = CreateService<IDecisionRequirementsDefinitionRestService>();
             _deploymentApi = CreateService<IDeploymentRestService>();
@@ -196,6 +199,9 @@ namespace Camunda.Api.Client
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/case-execution/"/>
         public ICaseExecutionService CaseExecutions => new CaseExecutionService(_caseExecutionRestService.Value);
+
+        /// <see href="https://docs.camunda.org/manual/7.13/reference/rest/case-instance/"/>
+        public ICaseInstanceService CaseInstances => new CaseInstanceService(_caseInstanceRestService.Value);
 
         /// <see href="https://docs.camunda.org/manual/7.9/reference/rest/decision-definition/"/>
         public IDecisionDefinitionService DecisionDefinitions => new DecisionDefinitionService(_decisionDefinitionRestService.Value);
